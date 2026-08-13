@@ -1,0 +1,3322 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#071019">
+  <meta name="color-scheme" content="dark">
+
+  <title>Tarsus Tavuk Kümes Otomasyonu & Panoları | HİS Otomasyon - Bekir Şener</title>
+
+  <meta name="description" content="Tarsus ve tüm Türkiye'ye anahtar teslim tavuk kümes otomasyon sistemleri, iklimlendirme panoları ve akıllı kümes çözümleri. Bekir Şener güvencesiyle 30 yıllık tecrübe.">
+  <meta name="keywords" content="tavuk kümes otomasyonu, kümes panoları, tarsus kümes otomasyon, iklimlendirme panosu, akıllı tavuk çiftliği, anahtar teslim kümes otomasyonu türkiye, bekir şener otomasyon, kümes havalandırma pano">
+  <meta name="author" content="HİS Otomasyon Sistemleri - Bekir Şener">
+  <meta name="robots" content="index, follow">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="HİS Otomasyon Sistemleri | Akıllı Kümes Teknolojileri">
+  <meta property="og:description" content="30 yıllık sektör deneyimiyle Türkiye genelinde anahtar teslim kümes otomasyonu ve pano çözümleri.">
+  <meta property="og:locale" content="tr_TR">
+
+  <!-- Tailwind CDN: tek dosyalık kullanım için -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --bg: #050a0f;
+      --bg2: #08121b;
+      --panel: rgba(13, 25, 36, .72);
+      --panel-solid: #0c1822;
+      --line: rgba(255,255,255,.09);
+      --text: #f3f7fa;
+      --muted: #8da0ae;
+      --blue: #169cff;
+      --blue2: #55c3ff;
+      --amber: #ff9f1c;
+      --green: #28d17c;
+      --red: #ff4d5e;
+      --cyan: #27d9e8;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 80% 0%, rgba(22,156,255,.13), transparent 30rem),
+        radial-gradient(circle at 0% 30%, rgba(255,159,28,.055), transparent 28rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, sans-serif;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .025;
+      background-image:
+        linear-gradient(rgba(255,255,255,.7) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.7) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, black, transparent 75%);
+      z-index: -1;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    ::selection {
+      background: rgba(22,156,255,.3);
+      color: #fff;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 100px 0;
+      position: relative;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid rgba(22,156,255,.25);
+      border-radius: 999px;
+      background: rgba(22,156,255,.07);
+      color: #72c9ff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 14px var(--green);
+      animation: pulse 1.8s infinite;
+    }
+
+    .section-title {
+      margin: 18px 0 14px;
+      font-family: Poppins, sans-serif;
+      font-size: clamp(32px, 5vw, 58px);
+      line-height: 1.02;
+      letter-spacing: -.045em;
+      font-weight: 800;
+    }
+
+    .section-title span {
+      color: var(--blue2);
+    }
+
+    .section-desc {
+      max-width: 700px;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    /* HEADER */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 14px 0;
+      transition: .3s ease;
+    }
+
+    .header.scrolled {
+      padding: 9px 0;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 62px;
+      padding: 8px 10px 8px 18px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(5,10,15,.72);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      box-shadow: 0 15px 60px rgba(0,0,0,.25);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-family: Poppins, sans-serif;
+      font-weight: 900;
+      letter-spacing: -.03em;
+    }
+
+    .brand-mark {
+      width: 39px;
+      height: 39px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      color: #fff;
+      background: linear-gradient(145deg, #149dff, #07518a);
+      box-shadow: 0 0 25px rgba(22,156,255,.28);
+    }
+
+    .brand small {
+      display: block;
+      margin-top: -3px;
+      color: #728795;
+      font-size: 8px;
+      letter-spacing: .16em;
+      font-weight: 800;
+    }
+
+    .desktop-menu {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .desktop-menu a {
+      padding: 11px 13px;
+      color: #91a2ad;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      transition: .2s;
+    }
+
+    .desktop-menu a:hover {
+      color: #fff;
+      background: rgba(255,255,255,.06);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 11px 15px;
+      border-radius: 12px;
+      background: #159e63;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      box-shadow: 0 8px 25px rgba(40,209,124,.16);
+    }
+
+    .mobile-menu-btn {
+      width: 44px;
+      height: 44px;
+      display: none;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255,255,255,.04);
+      color: #fff;
+    }
+
+    .mobile-menu {
+      display: none;
+      margin-top: 8px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(5,10,15,.95);
+      backdrop-filter: blur(20px);
+    }
+
+    .mobile-menu.open {
+      display: block;
+      animation: menuIn .2s ease;
+    }
+
+    .mobile-menu a {
+      display: block;
+      padding: 15px;
+      border-radius: 12px;
+      color: #a9b8c1;
+      font-weight: 700;
+    }
+
+    .mobile-menu a:hover {
+      background: rgba(255,255,255,.05);
+      color: #fff;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding: 140px 0 70px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      right: -250px;
+      top: 100px;
+      background: rgba(22,156,255,.1);
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      margin: 20px 0;
+      font-family: Poppins, sans-serif;
+      font-size: clamp(44px, 6.7vw, 84px);
+      line-height: .98;
+      letter-spacing: -.065em;
+      font-weight: 900;
+      max-width: 850px;
+    }
+
+    .hero h1 .gradient {
+      color: transparent;
+      background: linear-gradient(100deg, #fff 10%, #55c3ff 45%, #ffae3b 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .hero-copy {
+      max-width: 690px;
+      color: #94a7b4;
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      min-height: 52px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 0 19px;
+      border: 1px solid transparent;
+      border-radius: 14px;
+      font-size: 13px;
+      font-weight: 800;
+      transition: transform .2s, box-shadow .2s, background .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #159fff, #0873c1);
+      box-shadow: 0 15px 35px rgba(22,156,255,.22);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,.045);
+      border-color: var(--line);
+      color: #e4ebef;
+    }
+
+    .experience-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 25px;
+      color: #728691;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .experience-line strong {
+      color: #fff;
+    }
+
+    /* DASHBOARD */
+    .dashboard-wrap {
+      position: relative;
+      perspective: 1000px;
+    }
+
+    .dashboard {
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 24px;
+      overflow: hidden;
+      background: linear-gradient(145deg, rgba(15,30,42,.94), rgba(6,13,19,.96));
+      box-shadow:
+        0 35px 90px rgba(0,0,0,.45),
+        0 0 80px rgba(22,156,255,.08);
+      transform: rotateY(-4deg) rotateX(2deg);
+      transition: transform .6s ease;
+    }
+
+    .dashboard:hover {
+      transform: rotateY(0deg) rotateX(0deg) translateY(-5px);
+    }
+
+    .dash-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,.025);
+    }
+
+    .dash-title {
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .live {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #52df9b;
+      font-size: 9px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .live i {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 10px var(--green);
+    }
+
+    .dash-body {
+      padding: 16px;
+    }
+
+    .dash-temp {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 15px;
+      padding: 17px;
+      border: 1px solid rgba(22,156,255,.17);
+      border-radius: 18px;
+      background: linear-gradient(145deg, rgba(22,156,255,.09), rgba(255,255,255,.02));
+    }
+
+    .metric-label {
+      color: #738895;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .big-temp {
+      margin: 4px 0 3px;
+      font-family: Poppins, sans-serif;
+      font-size: 42px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -.06em;
+    }
+
+    .status-badge {
+      align-self: center;
+      padding: 7px 9px;
+      border-radius: 9px;
+      color: #5be29e;
+      background: rgba(40,209,124,.09);
+      border: 1px solid rgba(40,209,124,.15);
+      font-size: 9px;
+      font-weight: 900;
+    }
+
+    .mini-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 9px;
+    }
+
+    .mini-metric {
+      padding: 13px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background: rgba(255,255,255,.025);
+    }
+
+    .mini-value {
+      margin-top: 5px;
+      font-family: Poppins, sans-serif;
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .sensor-bar {
+      margin-top: 14px;
+    }
+
+    .sensor-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      color: #8294a0;
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    .bar {
+      height: 5px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255,255,255,.07);
+    }
+
+    .bar span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #118ff0, #57d7ff);
+      transition: width .35s ease;
+    }
+
+    .dash-controls {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .dash-control {
+      min-height: 47px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255,255,255,.025);
+      color: #c6d0d6;
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .switch {
+      width: 34px;
+      height: 20px;
+      padding: 2px;
+      border: 0;
+      border-radius: 999px;
+      background: #263641;
+      transition: .2s;
+    }
+
+    .switch::after {
+      content: "";
+      display: block;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #8796a0;
+      transition: .2s;
+    }
+
+    .switch.active {
+      background: rgba(40,209,124,.55);
+    }
+
+    .switch.active::after {
+      transform: translateX(14px);
+      background: #fff;
+    }
+
+    /* STATS */
+    .stats {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,.018);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .stat {
+      padding: 42px 25px;
+      text-align: center;
+      border-right: 1px solid var(--line);
+    }
+
+    .stat:last-child {
+      border-right: 0;
+    }
+
+    .stat-number {
+      font-family: Poppins, sans-serif;
+      font-size: 38px;
+      font-weight: 900;
+      letter-spacing: -.05em;
+    }
+
+    .stat-number span {
+      color: var(--amber);
+    }
+
+    .stat-label {
+      margin-top: 6px;
+      color: #718491;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    /* SOLUTIONS */
+    .solutions-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 13px;
+      margin-top: 50px;
+    }
+
+    .solution-card {
+      min-height: 285px;
+      padding: 25px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(22,156,255,.12), transparent 13rem),
+        rgba(255,255,255,.025);
+      transition: transform .35s, border-color .35s, background .35s;
+    }
+
+    .solution-card:hover,
+    .solution-card.active {
+      transform: translateY(-6px);
+      border-color: rgba(22,156,255,.35);
+      background:
+        radial-gradient(circle at 100% 0%, rgba(22,156,255,.17), transparent 13rem),
+        rgba(255,255,255,.04);
+    }
+
+    .solution-icon {
+      width: 49px;
+      height: 49px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(22,156,255,.2);
+      border-radius: 14px;
+      color: #56c4ff;
+      background: rgba(22,156,255,.08);
+    }
+
+    .solution-card h3 {
+      margin: 22px 0 10px;
+      font-family: Poppins, sans-serif;
+      font-size: 19px;
+      letter-spacing: -.03em;
+    }
+
+    .solution-card p {
+      margin: 0;
+      color: #8295a2;
+      font-size: 12px;
+      line-height: 1.75;
+    }
+
+    .solution-detail {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: .35s ease;
+    }
+
+    .solution-card.active .solution-detail {
+      max-height: 100px;
+      opacity: 1;
+      margin-top: 13px;
+    }
+
+    .solution-detail span {
+      display: inline-block;
+      margin: 3px 3px 0 0;
+      padding: 5px 7px;
+      border-radius: 6px;
+      background: rgba(255,255,255,.055);
+      color: #aebdc5;
+      font-size: 8px;
+      font-weight: 800;
+    }
+
+    .solution-arrow {
+      position: absolute;
+      right: 21px;
+      bottom: 21px;
+      color: #536773;
+    }
+
+    /* SIMULATOR */
+    .sim-section {
+      background:
+        radial-gradient(circle at 50% 50%, rgba(22,156,255,.065), transparent 38rem),
+        rgba(255,255,255,.012);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .sim-layout {
+      display: grid;
+      grid-template-columns: .75fr 1.25fr;
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .sim-panel {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      overflow: hidden;
+      background: rgba(7,15,22,.86);
+      box-shadow: 0 30px 70px rgba(0,0,0,.2);
+    }
+
+    .sim-head {
+      padding: 17px 19px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sim-head-title {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .sim-head-title i {
+      color: var(--blue2);
+    }
+
+    .sim-content {
+      padding: 20px;
+    }
+
+    .temperature-display {
+      text-align: center;
+      padding: 24px 10px;
+    }
+
+    .temperature-value {
+      font-family: Poppins, sans-serif;
+      font-size: clamp(62px, 9vw, 92px);
+      line-height: .9;
+      font-weight: 900;
+      letter-spacing: -.08em;
+      transition: color .3s;
+    }
+
+    .temperature-unit {
+      color: #738692;
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .temperature-state {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 14px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(40,209,124,.08);
+      border: 1px solid rgba(40,209,124,.15);
+      color: #52db96;
+      font-size: 9px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .temperature-state.warning {
+      color: #ffc15b;
+      background: rgba(255,159,28,.09);
+      border-color: rgba(255,159,28,.2);
+    }
+
+    .temperature-state.danger {
+      color: #ff6471;
+      background: rgba(255,77,94,.09);
+      border-color: rgba(255,77,94,.22);
+    }
+
+    .temperature-controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+    }
+
+    .temp-btn {
+      min-height: 55px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,.035);
+      color: #fff;
+      font-weight: 900;
+      transition: .18s;
+    }
+
+    .temp-btn:active {
+      transform: scale(.97);
+    }
+
+    .temp-btn.plus {
+      border-color: rgba(255,159,28,.18);
+      background: rgba(255,159,28,.06);
+    }
+
+    .target-control {
+      margin-top: 10px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,.025);
+    }
+
+    .target-top {
+      display: flex;
+      justify-content: space-between;
+      color: #8799a4;
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      margin-top: 12px;
+      accent-color: var(--blue);
+    }
+
+    .alarm-box {
+      margin-top: 10px;
+      min-height: 92px;
+      padding: 14px;
+      border: 1px solid rgba(40,209,124,.12);
+      border-radius: 14px;
+      background: rgba(40,209,124,.035);
+      transition: .3s;
+    }
+
+    .alarm-box.warning {
+      border-color: rgba(255,159,28,.25);
+      background: rgba(255,159,28,.055);
+    }
+
+    .alarm-box.danger {
+      border-color: rgba(255,77,94,.35);
+      background: rgba(255,77,94,.065);
+      animation: alarmFlash 1.1s infinite;
+    }
+
+    .alarm-title {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .alarm-message {
+      margin-top: 8px;
+      color: #8497a3;
+      font-size: 9px;
+      line-height: 1.55;
+    }
+
+    /* LIVE PANEL */
+    .control-room {
+      min-height: 100%;
+    }
+
+    .room-screen {
+      padding: 16px;
+      background:
+        linear-gradient(rgba(22,156,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(22,156,255,.035) 1px, transparent 1px),
+        #061018;
+      background-size: 20px 20px;
+    }
+
+    .room-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 9px;
+    }
+
+    .room-card {
+      min-height: 95px;
+      padding: 13px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 13px;
+      background: rgba(255,255,255,.025);
+    }
+
+    .room-card-top {
+      display: flex;
+      justify-content: space-between;
+      color: #70838f;
+      font-size: 8px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .room-value {
+      margin-top: 10px;
+      font-family: Poppins, sans-serif;
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .room-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 5px;
+      color: #4bd994;
+      font-size: 8px;
+      font-weight: 900;
+    }
+
+    .room-status::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: currentColor;
+      box-shadow: 0 0 8px currentColor;
+    }
+
+    .room-card.warning .room-status {
+      color: var(--amber);
+    }
+
+    .room-card.danger .room-status {
+      color: var(--red);
+    }
+
+    .event-log {
+      margin-top: 9px;
+      padding: 13px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 13px;
+      background: rgba(0,0,0,.2);
+    }
+
+    .event-log-title {
+      color: #748894;
+      font-size: 8px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .event-list {
+      display: grid;
+      gap: 7px;
+      margin-top: 9px;
+      max-height: 150px;
+      overflow: auto;
+    }
+
+    .event {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      color: #7f929d;
+      font-size: 8px;
+      line-height: 1.4;
+    }
+
+    .event-dot {
+      width: 5px;
+      height: 5px;
+      flex: 0 0 5px;
+      margin-top: 4px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .event.warning .event-dot {
+      background: var(--amber);
+    }
+
+    .event.danger .event-dot {
+      background: var(--red);
+    }
+
+    .sim-actions {
+      display: flex;
+      gap: 7px;
+      margin-top: 10px;
+    }
+
+    .sim-small-btn {
+      min-height: 39px;
+      flex: 1;
+      padding: 0 10px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(255,255,255,.03);
+      color: #aebcc4;
+      font-size: 8px;
+      font-weight: 900;
+    }
+
+    .sim-small-btn:hover {
+      background: rgba(255,255,255,.07);
+      color: #fff;
+    }
+
+    /* WHY */
+    .why-layout {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .why-list {
+      display: grid;
+      gap: 11px;
+      margin-top: 32px;
+    }
+
+    .why-item {
+      display: flex;
+      gap: 15px;
+      padding: 17px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,.022);
+    }
+
+    .why-number {
+      width: 35px;
+      height: 35px;
+      flex: 0 0 35px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      color: #62c9ff;
+      background: rgba(22,156,255,.08);
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .why-item h4 {
+      margin: 0 0 4px;
+      font-family: Poppins, sans-serif;
+      font-size: 13px;
+    }
+
+    .why-item p {
+      margin: 0;
+      color: #778b97;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .map-card {
+      min-height: 480px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 50% 45%, rgba(22,156,255,.13), transparent 17rem),
+        #08131d;
+    }
+
+    .map-grid {
+      position: absolute;
+      inset: 0;
+      opacity: .28;
+      background:
+        linear-gradient(30deg, transparent 47%, rgba(255,255,255,.08) 48%, transparent 49%),
+        linear-gradient(-20deg, transparent 47%, rgba(255,255,255,.06) 48%, transparent 49%);
+      background-size: 70px 70px;
+    }
+
+    .map-center {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      width: 100px;
+      height: 100px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(22,156,255,.45);
+      border-radius: 50%;
+      background: rgba(22,156,255,.09);
+      box-shadow: 0 0 70px rgba(22,156,255,.2);
+    }
+
+    .map-center::before,
+    .map-center::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(22,156,255,.18);
+      border-radius: 50%;
+    }
+
+    .map-center::before {
+      inset: -35px;
+    }
+
+    .map-center::after {
+      inset: -75px;
+    }
+
+    .map-pin {
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--blue2);
+      box-shadow: 0 0 20px var(--blue2);
+      animation: pinPulse 2s infinite;
+    }
+
+    .pin-1 { left: 29%; top: 32%; }
+    .pin-2 { left: 68%; top: 28%; animation-delay: .3s; }
+    .pin-3 { left: 76%; top: 63%; animation-delay: .6s; }
+    .pin-4 { left: 35%; top: 70%; animation-delay: .9s; }
+    .pin-5 { left: 56%; top: 22%; animation-delay: 1.2s; }
+
+    .map-label {
+      position: absolute;
+      left: 24px;
+      bottom: 22px;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background: rgba(5,10,15,.75);
+      backdrop-filter: blur(10px);
+    }
+
+    .map-label strong {
+      display: block;
+      font-family: Poppins, sans-serif;
+      font-size: 17px;
+    }
+
+    .map-label span {
+      color: #6f8390;
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+    /* CONTACT */
+    .contact-card {
+      display: grid;
+      grid-template-columns: 1fr .8fr;
+      gap: 30px;
+      padding: 35px;
+      border: 1px solid rgba(22,156,255,.16);
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(22,156,255,.12), transparent 20rem),
+        rgba(255,255,255,.025);
+    }
+
+    .contact-details {
+      display: grid;
+      gap: 10px;
+      margin-top: 30px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,.025);
+    }
+
+    .contact-icon {
+      width: 39px;
+      height: 39px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 39px;
+      border-radius: 11px;
+      color: #5bc5ff;
+      background: rgba(22,156,255,.08);
+    }
+
+    .contact-item small {
+      display: block;
+      color: #657a87;
+      font-size: 8px;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .contact-item strong {
+      display: block;
+      margin-top: 3px;
+      font-size: 12px;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 9px;
+      align-content: center;
+    }
+
+    .field {
+      width: 100%;
+      min-height: 49px;
+      padding: 0 14px;
+      outline: none;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(0,0,0,.18);
+      color: #fff;
+      font-size: 12px;
+      transition: .2s;
+    }
+
+    textarea.field {
+      min-height: 110px;
+      padding-top: 14px;
+      resize: vertical;
+    }
+
+    .field:focus {
+      border-color: rgba(22,156,255,.5);
+      box-shadow: 0 0 0 3px rgba(22,156,255,.08);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 45px 0 110px;
+      border-top: 1px solid var(--line);
+      color: #657984;
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .footer-brand {
+      color: #fff;
+      font-family: Poppins, sans-serif;
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+    .footer-text {
+      max-width: 540px;
+      margin-top: 8px;
+      font-size: 10px;
+      line-height: 1.8;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .footer-links a {
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    /* WHATSAPP */
+    .whatsapp {
+      position: fixed;
+      z-index: 1100;
+      right: 18px;
+      bottom: 18px;
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #18b96a;
+      color: #fff;
+      box-shadow: 0 12px 35px rgba(24,185,106,.35);
+      transition: .2s;
+    }
+
+    .whatsapp:hover {
+      transform: scale(1.07);
+    }
+
+    .whatsapp::before {
+      content: "";
+      position: absolute;
+      inset: -5px;
+      border: 1px solid rgba(40,209,124,.25);
+      border-radius: 50%;
+      animation: whatsappPulse 2.2s infinite;
+    }
+
+    .mobile-bottom {
+      display: none;
+    }
+
+    /* TOAST */
+    .toast-container {
+      position: fixed;
+      z-index: 2000;
+      top: 88px;
+      right: 18px;
+      width: min(350px, calc(100% - 36px));
+      pointer-events: none;
+    }
+
+    .toast {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 8px;
+      padding: 14px;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 14px;
+      background: rgba(8,17,25,.94);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 20px 50px rgba(0,0,0,.4);
+      animation: toastIn .3s ease;
+      pointer-events: auto;
+    }
+
+    .toast.warning {
+      border-color: rgba(255,159,28,.3);
+    }
+
+    .toast.danger {
+      border-color: rgba(255,77,94,.4);
+    }
+
+    .toast-icon {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 30px;
+      border-radius: 9px;
+      color: var(--green);
+      background: rgba(40,209,124,.09);
+    }
+
+    .toast.warning .toast-icon {
+      color: var(--amber);
+      background: rgba(255,159,28,.1);
+    }
+
+    .toast.danger .toast-icon {
+      color: var(--red);
+      background: rgba(255,77,94,.1);
+    }
+
+    .toast strong {
+      display: block;
+      font-size: 10px;
+    }
+
+    .toast p {
+      margin: 4px 0 0;
+      color: #7d919d;
+      font-size: 9px;
+      line-height: 1.45;
+    }
+
+    /* ANIMATIONS */
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .45; transform: scale(.75); }
+    }
+
+    @keyframes pinPulse {
+      0%,100% { transform: scale(1); opacity: .7; }
+      50% { transform: scale(1.8); opacity: 1; }
+    }
+
+    @keyframes whatsappPulse {
+      0% { transform: scale(.9); opacity: .8; }
+      70%,100% { transform: scale(1.35); opacity: 0; }
+    }
+
+    @keyframes alarmFlash {
+      0%,100% { box-shadow: 0 0 0 rgba(255,77,94,0); }
+      50% { box-shadow: 0 0 25px rgba(255,77,94,.12); }
+    }
+
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateX(25px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes menuIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* TABLET */
+    @media (max-width: 900px) {
+      .desktop-menu {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: grid;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .hero-grid,
+      .why-layout,
+      .sim-layout,
+      .contact-card {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 125px;
+      }
+
+      .dashboard {
+        max-width: 650px;
+        margin-inline: auto;
+        transform: none;
+      }
+
+      .solutions-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stat:nth-child(2) {
+        border-right: 0;
+      }
+
+      .stat:nth-child(-n+2) {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .why-layout {
+        gap: 35px;
+      }
+
+      .map-card {
+        min-height: 400px;
+      }
+    }
+
+    /* MOBILE */
+    @media (max-width: 620px) {
+      .container {
+        width: min(100% - 22px, 1180px);
+      }
+
+      .section {
+        padding: 72px 0;
+      }
+
+      .header {
+        padding: 8px 0;
+      }
+
+      .nav {
+        min-height: 57px;
+        border-radius: 16px;
+      }
+
+      .brand {
+        font-size: 13px;
+      }
+
+      .brand-mark {
+        width: 35px;
+        height: 35px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 112px 0 65px;
+      }
+
+      .hero h1 {
+        font-size: clamp(42px, 13vw, 62px);
+      }
+
+      .hero-copy {
+        font-size: 14px;
+        line-height: 1.75;
+      }
+
+      .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .experience-line {
+        font-size: 8px;
+      }
+
+      .dashboard {
+        border-radius: 19px;
+      }
+
+      .dash-body {
+        padding: 11px;
+      }
+
+      .dash-temp {
+        padding: 14px;
+      }
+
+      .big-temp {
+        font-size: 35px;
+      }
+
+      .mini-metric {
+        padding: 10px;
+      }
+
+      .mini-value {
+        font-size: 14px;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stat {
+        padding: 28px 10px;
+      }
+
+      .stat-number {
+        font-size: 29px;
+      }
+
+      .stat-label {
+        font-size: 7px;
+      }
+
+      .solutions-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .solution-card {
+        min-height: 235px;
+        padding: 21px;
+      }
+
+      .sim-layout {
+        gap: 12px;
+      }
+
+      .sim-content {
+        padding: 12px;
+      }
+
+      .temperature-display {
+        padding: 20px 5px;
+      }
+
+      .temperature-value {
+        font-size: 72px;
+      }
+
+      .room-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .room-card {
+        min-height: 88px;
+      }
+
+      .why-layout {
+        gap: 25px;
+      }
+
+      .map-card {
+        min-height: 340px;
+      }
+
+      .contact-card {
+        padding: 21px 14px;
+        border-radius: 20px;
+      }
+
+      .contact-form {
+        margin-top: 10px;
+      }
+
+      .footer-grid {
+        flex-direction: column;
+      }
+
+      .footer-links {
+        gap: 11px;
+      }
+
+      .whatsapp {
+        right: 14px;
+        bottom: 76px;
+        width: 54px;
+        height: 54px;
+      }
+
+      .mobile-bottom {
+        position: fixed;
+        z-index: 1050;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        left: 9px;
+        right: 9px;
+        bottom: 9px;
+        min-height: 56px;
+        border: 1px solid rgba(255,255,255,.1);
+        border-radius: 17px;
+        background: rgba(5,10,15,.88);
+        backdrop-filter: blur(18px);
+        box-shadow: 0 15px 50px rgba(0,0,0,.45);
+      }
+
+      .mobile-bottom a {
+        display: grid;
+        place-items: center;
+        align-content: center;
+        gap: 3px;
+        color: #718692;
+        font-size: 7px;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      .mobile-bottom a:nth-child(2) {
+        color: #4edb93;
+      }
+
+      .mobile-bottom svg {
+        width: 17px;
+        height: 17px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "HİS Otomasyon Sistemleri",
+    "alternateName": "HİS Otomasyon",
+    "description": "Tavuk kümes otomasyonu, iklimlendirme panoları, IoT izleme, yem-su otomasyonu ve anahtar teslim kümes otomasyon çözümleri.",
+    "founder": {
+      "@type": "Person",
+      "name": "Bekir Şener"
+    },
+    "telephone": "+90 533 769 22 78",
+    "url": "https://wa.me/905337692278",
+    "areaServed": {
+      "@type": "Country",
+      "name": "Türkiye"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Tarsus",
+      "addressRegion": "Mersin",
+      "addressCountry": "TR"
+    },
+    "knowsAbout": [
+      "Tavuk Kümes Otomasyonu",
+      "İklimlendirme Panoları",
+      "Havalandırma Otomasyonu",
+      "IoT Kümes İzleme",
+      "Yem ve Su Otomasyonu",
+      "Yumurta Toplama Otomasyonu",
+      "Gübre Bant Otomasyonu",
+      "Jeneratör Transfer Panoları",
+      "Endüstriyel Pano Tasarımı"
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Endüstriyel Tavuk Kümes Otomasyonu",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "HİS Otomasyon Sistemleri"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Türkiye"
+    }
+  }
+  </script>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="#anasayfa" class="brand" aria-label="HİS Otomasyon ana sayfa">
+          <span class="brand-mark">
+            <i data-lucide="cpu" style="width:20px"></i>
+          </span>
+          <span>
+            HİS OTOMASYON
+            <small>SİSTEMLERİ</small>
+          </span>
+        </a>
+
+        <div class="desktop-menu">
+          <a href="#cozumler">Çözümler</a>
+          <a href="#simulasyon">Kontrol Merkezi</a>
+          <a href="#neden-his">Neden HİS?</a>
+          <a href="#iletisim">İletişim</a>
+        </div>
+
+        <a class="nav-cta" href="https://wa.me/905337692278" target="_blank" rel="noopener">
+          <i data-lucide="message-circle" style="width:15px"></i>
+          WhatsApp
+        </a>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menüyü aç">
+          <i data-lucide="menu"></i>
+        </button>
+      </nav>
+
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="#cozumler">Gelişmiş Sistemler</a>
+        <a href="#simulasyon">Canlı Kontrol Simülasyonu</a>
+        <a href="#neden-his">Neden HİS Otomasyon?</a>
+        <a href="#iletisim">İletişim</a>
+        <a href="tel:+905337692278">Telefonla Ara</a>
+        <a href="https://wa.me/905337692278" target="_blank" rel="noopener">WhatsApp'tan Yaz</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="anasayfa">
+      <div class="hero-glow"></div>
+
+      <div class="container">
+        <div class="hero-grid">
+
+          <div>
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              Anahtar Teslim Kümes Teknolojileri
+            </div>
+
+            <h1>
+              Geleceğin
+              <span class="gradient">Akıllı Kümes</span>
+              Teknolojileri.
+            </h1>
+
+            <p class="hero-copy">
+              HİS Otomasyon Sistemleri; sıcaklık, nem, NH₃, CO₂, basınç,
+              yem, su ve havalandırma süreçlerini tek bir akıllı kontrol
+              altyapısında birleştirir.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#simulasyon" class="btn btn-primary">
+                <i data-lucide="activity" style="width:17px"></i>
+                Sistemi Canlı Dene
+              </a>
+
+              <a href="https://wa.me/905337692278" target="_blank" rel="noopener" class="btn btn-secondary">
+                <i data-lucide="message-circle" style="width:17px"></i>
+                Proje İçin WhatsApp
+              </a>
+            </div>
+
+            <div class="experience-line">
+              <i data-lucide="shield-check" style="width:15px;color:#28d17c"></i>
+              <strong>30 Yıllık Sektör Deneyimi</strong>
+              <span>•</span>
+              Bekir Şener Güvencesi
+            </div>
+          </div>
+
+          <!-- HERO DASHBOARD -->
+          <div class="dashboard-wrap">
+            <div class="dashboard">
+
+              <div class="dash-top">
+                <div class="dash-title">HİS · KÜMES CONTROL</div>
+                <div class="live">
+                  <i></i>
+                  Sistem Online
+                </div>
+              </div>
+
+              <div class="dash-body">
+
+                <div class="dash-temp">
+                  <div>
+                    <div class="metric-label">Kümes Sıcaklığı</div>
+                    <div class="big-temp" id="heroTemp">22.4°C</div>
+                    <div class="metric-label">Hedef: <span id="heroTarget">22.0</span>°C</div>
+                  </div>
+                  <div class="status-badge" id="heroStatus">NORMAL</div>
+                </div>
+
+                <div class="mini-metrics">
+                  <div class="mini-metric">
+                    <div class="metric-label">Nem</div>
+                    <div class="mini-value" id="heroHumidity">61%</div>
+                  </div>
+
+                  <div class="mini-metric">
+                    <div class="metric-label">NH₃</div>
+                    <div class="mini-value" id="heroNh3">7 ppm</div>
+                  </div>
+
+                  <div class="mini-metric">
+                    <div class="metric-label">CO₂</div>
+                    <div class="mini-value" id="heroCo2">810</div>
+                  </div>
+                </div>
+
+                <div class="sensor-bar">
+                  <div class="sensor-row">
+                    <span>Havalandırma</span>
+                    <span id="heroFanText">42%</span>
+                  </div>
+                  <div class="bar">
+                    <span id="heroFanBar" style="width:42%"></span>
+                  </div>
+                </div>
+
+                <div class="dash-controls">
+                  <div class="dash-control">
+                    Fan Grubu 01
+                    <button class="switch active" data-switch aria-label="Fan 1"></button>
+                  </div>
+
+                  <div class="dash-control">
+                    Fan Grubu 02
+                    <button class="switch active" data-switch aria-label="Fan 2"></button>
+                  </div>
+
+                  <div class="dash-control">
+                    Alarm Sistemi
+                    <button class="switch active" data-switch aria-label="Alarm"></button>
+                  </div>
+
+                  <div class="dash-control">
+                    Jeneratör
+                    <button class="switch" data-switch aria-label="Jeneratör"></button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats">
+      <div class="container">
+        <div class="stats-grid">
+
+          <div class="stat">
+            <div class="stat-number"><span data-counter="30">0</span>+</div>
+            <div class="stat-label">Yıl Sektör Deneyimi</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number"><span data-counter="100">0</span>+</div>
+            <div class="stat-label">Tamamlanan Proje</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number"><span data-counter="100">0</span><span>%</span></div>
+            <div class="stat-label">Müşteri Memnuniyeti</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number"><span data-counter="81">0</span></div>
+            <div class="stat-label">İlde Servis & Kurulum</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SOLUTIONS -->
+    <section class="section" id="cozumler">
+      <div class="container">
+
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Next-Gen Automation
+        </div>
+
+        <h2 class="section-title">
+          Kümesi <span>tek merkezden</span><br>
+          yönetin.
+        </h2>
+
+        <p class="section-desc">
+          Modern kümes işletmelerinin ihtiyaç duyduğu kontrol, izleme,
+          alarm ve otomasyon altyapısını tek bir mühendislik yaklaşımıyla
+          tasarlıyoruz.
+        </p>
+
+        <div class="solutions-grid">
+
+          <article class="solution-card" data-card>
+            <div class="solution-icon">
+              <i data-lucide="thermometer"></i>
+            </div>
+            <h3>Akıllı İklimlendirme</h3>
+            <p>
+              PID kontrol altyapısı ile sıcaklık, nem, NH₃, CO₂ ve fark
+              basınç sensörlerinden gelen verileri gerçek zamanlı yönetin.
+            </p>
+            <div class="solution-detail">
+              <span>PID CONTROL</span>
+              <span>NH₃</span>
+              <span>CO₂</span>
+              <span>ΔP</span>
+            </div>
+            <div class="solution-arrow">
+              <i data-lucide="arrow-up-right" style="width:18px"></i>
+            </div>
+          </article>
+
+          <article class="solution-card" data-card>
+            <div class="solution-icon">
+              <i data-lucide="cloud-cog"></i>
+            </div>
+            <h3>IoT & Bulut İzleme</h3>
+            <p>
+              Dünyanın herhangi bir yerinden kümes verilerini takip edin.
+              Anlık mobil bildirim, SMS ve alarm senaryolarını yönetin.
+            </p>
+            <div class="solution-detail">
+              <span>IoT</span>
+              <span>CLOUD</span>
+              <span>MOBILE</span>
+              <span>SMS</span>
+            </div>
+            <div class="solution-arrow">
+              <i data-lucide="arrow-up-right" style="width:18px"></i>
+            </div>
+          </article>
+
+          <article class="solution-card" data-card>
+            <div class="solution-icon">
+              <i data-lucide="wheat"></i>
+            </div>
+            <h3>Yem & Su Yönetimi</h3>
+            <p>
+              Silolar, kantarlar ve tüketim verilerini otomatik olarak
+              izleyerek verimlilik analizlerine dönüştürün.
+            </p>
+            <div class="solution-detail">
+              <span>SİLO</span>
+              <span>KANTAR</span>
+              <span>TÜKETİM</span>
+              <span>ANALİZ</span>
+            </div>
+            <div class="solution-arrow">
+              <i data-lucide="arrow-up-right" style="width:18px"></i>
+            </div>
+          </article>
+
+          <article class="solution-card" data-card>
+            <div class="solution-icon">
+              <i data-lucide="egg"></i>
+            </div>
+            <h3>Yumurta & Gübre Bantları</h3>
+            <p>
+              Frekans konvertörlü hassas hız kontrol panoları ile bant
+              sistemlerinin kontrollü ve verimli çalışmasını sağlayın.
+            </p>
+            <div class="solution-detail">
+              <span>VFD</span>
+              <span>HIZ KONTROL</span>
+              <span>BANT</span>
+            </div>
+            <div class="solution-arrow">
+              <i data-lucide="arrow-up-right" style="width:18px"></i>
+            </div>
+          </article>
+
+          <article class="solution-card" data-card>
+            <div class="solution-icon">
+              <i data-lucide="zap"></i>
+            </div>
+            <h3>Kesintisiz Güç</h3>
+            <p>
+              Jeneratör transferi, acil durum senaryoları ve fazla akım /
+              voltaj korumalarıyla kritik sistemlerinizi güvence altına alın.
+            </p>
+            <div class="solution-detail">
+              <span>ATS</span>
+              <span>JENERATÖR</span>
+              <span>OVP</span>
+              <span>OCP</span>
+            </div>
+            <div class="solution-arrow">
+              <i data-lucide="arrow-up-right" style="width:18px"></i>
+            </div>
+          </article>
+
+          <article class="solution-card" data-card>
+            <div class="solution-icon">
+              <i data-lucide="settings-2"></i>
+            </div>
+            <h3>Anahtar Teslim Mühendislik</h3>
+            <p>
+              Pano tasarımı, otomasyon, saha montajı, devreye alma ve
+              mühendislik danışmanlığını tek proje çatısı altında sunun.
+            </p>
+            <div class="solution-detail">
+              <span>PROJE</span>
+              <span>PANO</span>
+              <span>MONTAJ</span>
+              <span>DEVREYE ALMA</span>
+            </div>
+            <div class="solution-arrow">
+              <i data-lucide="arrow-up-right" style="width:18px"></i>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SIMULATOR -->
+    <section class="section sim-section" id="simulasyon">
+      <div class="container">
+
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          İnteraktif Kontrol Merkezi
+        </div>
+
+        <h2 class="section-title">
+          Panonun başına<br>
+          <span>geçin.</span>
+        </h2>
+
+        <p class="section-desc">
+          Bu interaktif demo ile kümes kontrol mantığının nasıl çalıştığını
+          deneyimleyin. Sıcaklığı değiştirin; sistemin fan, alarm ve sensör
+          senaryolarına nasıl tepki verdiğini canlı olarak görün.
+        </p>
+
+        <div class="sim-layout">
+
+          <!-- SIMULATOR CONTROL -->
+          <div class="sim-panel">
+            <div class="sim-head">
+              <div class="sim-head-title">
+                <i data-lucide="sliders-horizontal" style="width:15px"></i>
+                İklim Kontrolü
+              </div>
+              <div class="live">
+                <i></i>
+                CANLI
+              </div>
+            </div>
+
+            <div class="sim-content">
+
+              <div class="temperature-display">
+                <div class="metric-label">Anlık Kümes Sıcaklığı</div>
+
+                <div>
+                  <span class="temperature-value" id="tempValue">22.0</span>
+                  <span class="temperature-unit">°C</span>
+                </div>
+
+                <div class="temperature-state" id="tempState">
+                  <span>●</span>
+                  SİSTEM NORMAL
+                </div>
+              </div>
+
+              <div class="temperature-controls">
+                <button class="temp-btn" id="decreaseTemp">
+                  <i data-lucide="minus"></i>
+                  Sıcaklığı Düşür
+                </button>
+
+                <button class="temp-btn plus" id="increaseTemp">
+                  <i data-lucide="plus"></i>
+                  Sıcaklığı Artır
+                </button>
+              </div>
+
+              <div class="target-control">
+                <div class="target-top">
+                  <span>Hedef Sıcaklık</span>
+                  <strong id="targetValue">22.0°C</strong>
+                </div>
+                <input
+                  type="range"
+                  id="targetRange"
+                  min="18"
+                  max="28"
+                  step=".5"
+                  value="22"
+                  aria-label="Hedef sıcaklık"
+                >
+              </div>
+
+              <div class="alarm-box" id="alarmBox">
+                <div class="alarm-title">
+                  <i data-lucide="shield-check" style="width:15px"></i>
+                  <span id="alarmTitle">Sistem Güvenli</span>
+                </div>
+                <div class="alarm-message" id="alarmMessage">
+                  Tüm çevresel değerler kabul edilebilir çalışma aralığında.
+                </div>
+              </div>
+
+              <div class="sim-actions">
+                <button class="sim-small-btn" id="normalTest">
+                  NORMAL TEST
+                </button>
+                <button class="sim-small-btn" id="alarmTest">
+                  ALARM TESTİ
+                </button>
+                <button class="sim-small-btn" id="resetTest">
+                  SIFIRLA
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- LIVE CONTROL ROOM -->
+          <div class="sim-panel control-room">
+
+            <div class="sim-head">
+              <div class="sim-head-title">
+                <i data-lucide="monitor-cog" style="width:15px"></i>
+                HİS Pano İzleme
+              </div>
+
+              <div class="live">
+                <i></i>
+                ONLINE
+              </div>
+            </div>
+
+            <div class="room-screen">
+
+              <div class="room-grid">
+
+                <div class="room-card" id="roomTemp">
+                  <div class="room-card-top">
+                    <span>Sıcaklık</span>
+                    <i data-lucide="thermometer" style="width:12px"></i>
+                  </div>
+                  <div class="room-value" id="roomTempValue">22.0°C</div>
+                  <div class="room-status" id="roomTempStatus">NORMAL</div>
+                </div>
+
+                <div class="room-card">
+                  <div class="room-card-top">
+                    <span>Nem</span>
+                    <i data-lucide="droplets" style="width:12px"></i>
+                  </div>
+                  <div class="room-value" id="roomHumidity">61%</div>
+                  <div class="room-status">OPTİMAL</div>
+                </div>
+
+                <div class="room-card" id="roomNh3">
+                  <div class="room-card-top">
+                    <span>NH₃</span>
+                    <i data-lucide="wind" style="width:12px"></i>
+                  </div>
+                  <div class="room-value" id="roomNh3Value">7 ppm</div>
+                  <div class="room-status" id="roomNh3Status">GÜVENLİ</div>
+                </div>
+
+                <div class="room-card" id="roomCo2">
+                  <div class="room-card-top">
+                    <span>CO₂</span>
+                    <i data-lucide="cloud" style="width:12px"></i>
+                  </div>
+                  <div class="room-value" id="roomCo2Value">810 ppm</div>
+                  <div class="room-status" id="roomCo2Status">NORMAL</div>
+                </div>
+
+                <div class="room-card">
+                  <div class="room-card-top">
+                    <span>Fan Hızı</span>
+                    <i data-lucide="fan" style="width:12px"></i>
+                  </div>
+                  <div class="room-value" id="roomFanValue">42%</div>
+                  <div class="room-status">OTOMATİK</div>
+                </div>
+
+                <div class="room-card">
+                  <div class="room-card-top">
+                    <span>Basınç</span>
+                    <i data-lucide="gauge" style="width:12px"></i>
+                  </div>
+                  <div class="room-value" id="roomPressure">24 Pa</div>
+                  <div class="room-status">STABİL</div>
+                </div>
+
+              </div>
+
+              <div class="event-log">
+                <div class="event-log-title">
+                  Sistem Olay Günlüğü
+                </div>
+
+                <div class="event-list" id="eventList">
+                  <div class="event">
+                    <span class="event-dot"></span>
+                    <span>Otomatik iklimlendirme sistemi devrede.</span>
+                  </div>
+
+                  <div class="event">
+                    <span class="event-dot"></span>
+                    <span>Fan grubu 01 optimum hızda çalışıyor.</span>
+                  </div>
+
+                  <div class="event">
+                    <span class="event-dot"></span>
+                    <span>Uzaktan izleme bağlantısı aktif.</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sim-actions">
+                <button class="sim-small-btn" id="toggleFans">
+                  FANLARI AÇ / KAPAT
+                </button>
+
+                <button class="sim-small-btn" id="toggleAlarm">
+                  ALARM SİSTEMİ
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY HIS -->
+    <section class="section" id="neden-his">
+      <div class="container">
+
+        <div class="why-layout">
+
+          <div>
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              HİS Otomasyon Farkı
+            </div>
+
+            <h2 class="section-title">
+              Tarsus'tan<br>
+              <span>Türkiye'nin</span><br>
+              her yerine.
+            </h2>
+
+            <p class="section-desc">
+              Bir otomasyon panosundan fazlası. Projenin keşfinden pano
+              tasarımına, saha montajından devreye almaya kadar bütün
+              süreci tek bir mühendislik anlayışıyla ele alıyoruz.
+            </p>
+
+            <div class="why-list">
+
+              <div class="why-item">
+                <div class="why-number">01</div>
+                <div>
+                  <h4>30 Yıllık Sektör Deneyimi</h4>
+                  <p>
+                    Kümes otomasyonu ve endüstriyel sistemlerde uzun yıllara
+                    dayanan saha tecrübesi.
+                  </p>
+                </div>
+              </div>
+
+              <div class="why-item">
+                <div class="why-number">02</div>
+                <div>
+                  <h4>Projeye Özel Pano Tasarımı</h4>
+                  <p>
+                    Her işletmenin kapasitesine ve çalışma senaryosuna göre
+                    kontrol altyapısı.
+                  </p>
+                </div>
+              </div>
+
+              <div class="why-item">
+                <div class="why-number">03</div>
+                <div>
+                  <h4>Anahtar Teslim Kurulum</h4>
+                  <p>
+                    Pano, saha ekipmanları, kablolama, otomasyon ve devreye
+                    alma süreçlerinin bütünleşik yönetimi.
+                  </p>
+                </div>
+              </div>
+
+              <div class="why-item">
+                <div class="why-number">04</div>
+                <div>
+                  <h4>Türkiye Geneli Hizmet</h4>
+                  <p>
+                    Tarsus / Mersin merkezli yapı ile Türkiye genelinde proje,
+                    kurulum ve teknik destek.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="map-card">
+
+            <div class="map-grid"></div>
+
+            <div class="map-pin pin-1"></div>
+            <div class="map-pin pin-2"></div>
+            <div class="map-pin pin-3"></div>
+            <div class="map-pin pin-4"></div>
+            <div class="map-pin pin-5"></div>
+
+            <div class="map-center">
+              <i data-lucide="radio-tower" style="width:31px;color:#55c3ff"></i>
+            </div>
+
+            <div class="map-label">
+              <strong>TARSUS / MERSİN</strong>
+              <span>MERKEZ · TÜRKİYE GENELİ ANAHTAR TESLİM</span>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="iletisim">
+      <div class="container">
+
+        <div class="contact-card">
+
+          <div>
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              Projenizi Konuşalım
+            </div>
+
+            <h2 class="section-title">
+              Kümesiniz için<br>
+              <span>doğru otomasyonu</span><br>
+              birlikte tasarlayalım.
+            </h2>
+
+            <p class="section-desc">
+              Yeni kümes projesi, mevcut sistem yenileme, otomasyon panosu,
+              iklimlendirme veya uzaktan izleme çözümü için doğrudan iletişime
+              geçebilirsiniz.
+            </p>
+
+            <div class="contact-details">
+
+              <a class="contact-item" href="tel:+905337692278">
+                <div class="contact-icon">
+                  <i data-lucide="phone"></i>
+                </div>
+                <div>
+                  <small>Telefon</small>
+                  <strong>0533 769 22 78</strong>
+                </div>
+              </a>
+
+              <a class="contact-item" href="https://wa.me/905337692278" target="_blank" rel="noopener">
+                <div class="contact-icon">
+                  <i data-lucide="message-circle"></i>
+                </div>
+                <div>
+                  <small>WhatsApp</small>
+                  <strong>Doğrudan WhatsApp'tan Yazın</strong>
+                </div>
+              </a>
+
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i data-lucide="map-pin"></i>
+                </div>
+                <div>
+                  <small>Merkez</small>
+                  <strong>Tarsus / Mersin · Türkiye Geneli</strong>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- FORM DEMO -->
+          <form class="contact-form" id="contactForm">
+
+            <input
+              class="field"
+              type="text"
+              name="name"
+              placeholder="Adınız Soyadınız"
+              autocomplete="name"
+              required
+            >
+
+            <input
+              class="field"
+              type="tel"
+              name="phone"
+              placeholder="Telefon Numaranız"
+              autocomplete="tel"
+              required
+            >
+
+            <select class="field" name="project">
+              <option value="">Proje Türü Seçin</option>
+              <option>Yeni Kümes Otomasyonu</option>
+              <option>İklimlendirme Panosu</option>
+              <option>Mevcut Sistem Yenileme</option>
+              <option>IoT / Uzaktan İzleme</option>
+              <option>Yem & Su Otomasyonu</option>
+              <option>Yumurta / Gübre Bantları</option>
+              <option>Jeneratör Transfer Panosu</option>
+            </select>
+
+            <textarea
+              class="field"
+              name="message"
+              placeholder="Projeniz hakkında kısaca bilgi verin..."
+            ></textarea>
+
+            <button class="btn btn-primary" type="submit">
+              <i data-lucide="send" style="width:16px"></i>
+              WhatsApp ile Teklif İste
+            </button>
+
+            <div style="color:#607682;font-size:8px;line-height:1.6;text-align:center">
+              Form gönderildiğinde WhatsApp üzerinden iletişim başlatılır.
+            </div>
+
+          </form>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div>
+          <div class="footer-brand">HİS OTOMASYON SİSTEMLERİ</div>
+
+          <div class="footer-text">
+            Tavuk kümes otomasyonu · İklimlendirme panoları · IoT uzaktan
+            izleme · Yem & su yönetimi · Yumurta ve gübre bant otomasyonu ·
+            Jeneratör transfer panoları · Anahtar teslim mühendislik.
+            Tarsus / Mersin merkezli, Türkiye geneli hizmet.
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <a href="#anasayfa">Ana Sayfa</a>
+          <a href="#cozumler">Çözümler</a>
+          <a href="#simulasyon">Kontrol Merkezi</a>
+          <a href="#neden-his">Hakkımızda</a>
+          <a href="#iletisim">İletişim</a>
+        </div>
+
+      </div>
+
+      <div style="margin-top:35px;padding-top:18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;font-size:8px">
+        <span>© 2026 HİS Otomasyon Sistemleri. Tüm hakları saklıdır.</span>
+        <span>Bekir Şener · 30 Yıllık Sektör Deneyimi</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP -->
+  <a
+    class="whatsapp"
+    href="https://wa.me/905337692278"
+    target="_blank"
+    rel="noopener"
+    aria-label="WhatsApp ile iletişim"
+  >
+    <i data-lucide="message-circle" style="width:26px;height:26px"></i>
+  </a>
+
+  <!-- MOBILE BOTTOM BAR -->
+  <div class="mobile-bottom">
+    <a href="#cozumler">
+      <i data-lucide="layers"></i>
+      Çözümler
+    </a>
+
+    <a href="https://wa.me/905337692278" target="_blank" rel="noopener">
+      <i data-lucide="message-circle"></i>
+      WhatsApp
+    </a>
+
+    <a href="#simulasyon">
+      <i data-lucide="monitor-cog"></i>
+      Kontrol
+    </a>
+  </div>
+
+  <!-- TOAST CONTAINER -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script>
+    /* =========================================================
+       HİS OTOMASYON - INTERACTIVE SINGLE PAGE ENGINE
+       ========================================================= */
+
+    "use strict";
+
+    /* ---------- ICONS ---------- */
+    if (window.lucide) {
+      lucide.createIcons();
+    }
+
+    /* ---------- HEADER ---------- */
+    const header = document.getElementById("header");
+
+    window.addEventListener("scroll", () => {
+      header.classList.toggle("scrolled", window.scrollY > 30);
+    }, { passive: true });
+
+    /* ---------- MOBILE MENU ---------- */
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    mobileMenuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("open");
+
+      const icon = mobileMenuBtn.querySelector("svg");
+
+      if (mobileMenu.classList.contains("open")) {
+        mobileMenuBtn.innerHTML = '<i data-lucide="x"></i>';
+      } else {
+        mobileMenuBtn.innerHTML = '<i data-lucide="menu"></i>';
+      }
+
+      lucide.createIcons();
+    });
+
+    document.querySelectorAll(".mobile-menu a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+        mobileMenuBtn.innerHTML = '<i data-lucide="menu"></i>';
+        lucide.createIcons();
+      });
+    });
+
+    /* ---------- COUNTERS ---------- */
+    const counters = document.querySelectorAll("[data-counter]");
+    let countersStarted = false;
+
+    function runCounters() {
+      if (countersStarted) return;
+      countersStarted = true;
+
+      counters.forEach(counter => {
+        const target = Number(counter.dataset.counter);
+        const duration = 1300;
+        const start = performance.now();
+
+        function animate(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+
+          counter.textContent = Math.floor(target * eased);
+
+          if (progress < 1) {
+            requestAnimationFrame(animate);
+          } else {
+            counter.textContent = target;
+          }
+        }
+
+        requestAnimationFrame(animate);
+      });
+    }
+
+    const statsSection = document.querySelector(".stats");
+
+    const statsObserver = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        runCounters();
+        statsObserver.disconnect();
+      }
+    }, { threshold: .3 });
+
+    statsObserver.observe(statsSection);
+
+    /* ---------- SOLUTION CARDS ---------- */
+    document.querySelectorAll("[data-card]").forEach(card => {
+      card.addEventListener("click", () => {
+
+        document.querySelectorAll("[data-card]").forEach(other => {
+          if (other !== card) other.classList.remove("active");
+        });
+
+        card.classList.toggle("active");
+      });
+    });
+
+    /* ---------- DEMO STATE ---------- */
+    let temperature = 22.0;
+    let targetTemperature = 22.0;
+    let alarmEnabled = true;
+    let fansEnabled = true;
+
+    const tempValue = document.getElementById("tempValue");
+    const tempState = document.getElementById("tempState");
+    const alarmBox = document.getElementById("alarmBox");
+    const alarmTitle = document.getElementById("alarmTitle");
+    const alarmMessage = document.getElementById("alarmMessage");
+
+    const roomTemp = document.getElementById("roomTemp");
+    const roomTempValue = document.getElementById("roomTempValue");
+    const roomTempStatus = document.getElementById("roomTempStatus");
+
+    const roomNh3 = document.getElementById("roomNh3");
+    const roomNh3Value = document.getElementById("roomNh3Value");
+    const roomNh3Status = document.getElementById("roomNh3Status");
+
+    const roomCo2 = document.getElementById("roomCo2");
+    const roomCo2Value = document.getElementById("roomCo2Value");
+    const roomCo2Status = document.getElementById("roomCo2Status");
+
+    const roomHumidity = document.getElementById("roomHumidity");
+    const roomFanValue = document.getElementById("roomFanValue");
+
+    const eventList = document.getElementById("eventList");
+
+    /* ---------- TOAST ---------- */
+    function showToast(title, message, type = "normal") {
+
+      const toast = document.createElement("div");
+      toast.className = "toast " + type;
+
+      let icon = "check-circle";
+
+      if (type === "warning") icon = "triangle-alert";
+      if (type === "danger") icon = "siren";
+
+      toast.innerHTML = `
+        <div class="toast-icon">
+          <i data-lucide="${icon}" style="width:16px"></i>
+        </div>
+        <div>
+          <strong>${title}</strong>
+          <p>${message}</p>
+        </div>
+      `;
+
+      toastContainer.appendChild(toast);
+      lucide.createIcons();
+
+      setTimeout(() => {
+        toast.style.opacity = "0";
+        toast.style.transform = "translateX(20px)";
+        toast.style.transition = ".3s";
+
+        setTimeout(() => toast.remove(), 300);
+      }, 4000);
+    }
+
+    const toastContainer = document.getElementById("toastContainer");
+
+    /* ---------- EVENT LOG ---------- */
+    function addEvent(message, type = "normal") {
+
+      const event = document.createElement("div");
+      event.className = "event " + type;
+
+      event.innerHTML = `
+        <span class="event-dot"></span>
+        <span>${new Date().toLocaleTimeString("tr-TR", {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit"
+        })} — ${message}</span>
+      `;
+
+      eventList.prepend(event);
+
+      while (eventList.children.length > 7) {
+        eventList.lastElementChild.remove();
+      }
+    }
+
+    /* ---------- SIMULATION ENGINE ---------- */
+    function updateSimulation(showNotification = false) {
+
+      temperature = Math.max(15, Math.min(40, temperature));
+
+      let humidity = Math.round(
+        61 + ((22 - temperature) * 1.2) + (Math.random() * 2 - 1)
+      );
+
+      humidity = Math.max(35, Math.min(85, humidity));
+
+      let nh3 = Math.round(
+        7 + Math.max(0, temperature - 23) * 3.2 + Math.random() * 2
+      );
+
+      let co2 = Math.round(
+        810 + Math.max(0, temperature - 23) * 150 + Math.random() * 60
+      );
+
+      let fan = Math.round(
+        42 +
+        Math.max(0, temperature - targetTemperature) * 13
+      );
+
+      if (!fansEnabled) fan = 0;
+
+      fan = Math.max(0, Math.min(100, fan));
+
+      let state = "normal";
+
+      if (temperature >= 27 && temperature < 30) {
+        state = "warning";
+      }
+
+      if (temperature >= 30) {
+        state = "danger";
+      }
+
+      if (nh3 >= 20 && state === "normal") {
+        state = "warning";
+      }
+
+      if (nh3 >= 30) {
+        state = "danger";
+      }
+
+      /* MAIN TEMPERATURE */
+      tempValue.textContent = temperature.toFixed(1);
+
+      tempState.className = "temperature-state";
+
+      if (state === "normal") {
+        tempState.innerHTML = "<span>●</span> SİSTEM NORMAL";
+        alarmBox.className = "alarm-box";
+        alarmTitle.textContent = "Sistem Güvenli";
+        alarmMessage.textContent =
+          "Tüm çevresel değerler kabul edilebilir çalışma aralığında.";
+        tempValue.style.color = "#f3f7fa";
+      }
+
+      if (state === "warning") {
+        tempState.classList.add("warning");
+        tempState.innerHTML = "<span>●</span> DİKKAT / ÖN ALARM";
+        alarmBox.className = "alarm-box warning";
+        alarmTitle.textContent = "Ön Alarm: İklim Değişiyor";
+        alarmMessage.textContent =
+          "Sistem sıcaklık artışını algıladı. Havalandırma otomatik olarak yükseltiliyor.";
+        tempValue.style.color = "#ffc15b";
+
+        if (showNotification && alarmEnabled) {
+          showToast(
+            "Ön Alarm",
+            "Sıcaklık yükseliyor. Havalandırma sistemi devrede.",
+            "warning"
+          );
+          addEvent(
+            "Ön alarm: sıcaklık yüksek seviyeye ulaştı.",
+            "warning"
+          );
+        }
+      }
+
+      if (state === "danger") {
+        tempState.classList.add("danger");
+        tempState.innerHTML = "<span>●</span> KRİTİK ALARM";
+        alarmBox.className = "alarm-box danger";
+        alarmTitle.textContent = "KRİTİK SICAKLIK ALARMI";
+        alarmMessage.textContent =
+          "Kritik eşik aşıldı. Fanlar maksimum seviyeye çekiliyor ve alarm senaryosu tetikleniyor.";
+        tempValue.style.color = "#ff5c69";
+
+        if (showNotification && alarmEnabled) {
+          showToast(
+            "KRİTİK ALARM",
+            "Kümes sıcaklığı kritik seviyeye ulaştı!",
+            "danger"
+          );
+
+          addEvent(
+            "KRİTİK ALARM: sıcaklık eşiği aşıldı.",
+            "danger"
+          );
+
+          if (navigator.vibrate) {
+            navigator.vibrate([180, 100, 180, 100, 300]);
+          }
+        }
+      }
+
+      /* ROOM VALUES */
+      roomTempValue.textContent = temperature.toFixed(1) + "°C";
+      roomHumidity.textContent = humidity + "%";
+      roomNh3Value.textContent = nh3 + " ppm";
+      roomCo2Value.textContent = co2 + " ppm";
+      roomFanValue.textContent = fan + "%";
+
+      /* ROOM TEMP */
+      roomTemp.className = "room-card";
+
+      if (state === "warning") {
+        roomTemp.classList.add("warning");
+        roomTempStatus.textContent = "ÖN ALARM";
+      } else if (state === "danger") {
+        roomTemp.classList.add("danger");
+        roomTempStatus.textContent = "KRİTİK";
+      } else {
+        roomTempStatus.textContent = "NORMAL";
+      }
+
+      /* NH3 */
+      roomNh3.className = "room-card";
+
+      if (nh3 >= 30) {
+        roomNh3.classList.add("danger");
+        roomNh3Status.textContent = "KRİTİK";
+      } else if (nh3 >= 20) {
+        roomNh3.classList.add("warning");
+        roomNh3Status.textContent = "YÜKSEK";
+      } else {
+        roomNh3Status.textContent = "GÜVENLİ";
+      }
+
+      /* CO2 */
+      roomCo2.className = "room-card";
+
+      if (co2 >= 1500) {
+        roomCo2.classList.add("danger");
+        roomCo2Status.textContent = "KRİTİK";
+      } else if (co2 >= 1200) {
+        roomCo2.classList.add("warning");
+        roomCo2Status.textContent = "YÜKSEK";
+      } else {
+        roomCo2Status.textContent = "NORMAL";
+      }
+
+      /* HERO DASHBOARD */
+      document.getElementById("heroTemp").textContent =
+        temperature.toFixed(1) + "°C";
+
+      document.getElementById("heroTarget").textContent =
+        targetTemperature.toFixed(1);
+
+      document.getElementById("heroHumidity").textContent =
+        humidity + "%";
+
+      document.getElementById("heroNh3").textContent =
+        nh3 + " ppm";
+
+      document.getElementById("heroCo2").textContent =
+        co2;
+
+      document.getElementById("heroFanText").textContent =
+        fan + "%";
+
+      document.getElementById("heroFanBar").style.width =
+        fan + "%";
+
+      const heroStatus = document.getElementById("heroStatus");
+
+      if (state === "normal") {
+        heroStatus.textContent = "NORMAL";
+        heroStatus.style.color = "#5be29e";
+        heroStatus.style.background = "rgba(40,209,124,.09)";
+      }
+
+      if (state === "warning") {
+        heroStatus.textContent = "DİKKAT";
+        heroStatus.style.color = "#ffc15b";
+        heroStatus.style.background = "rgba(255,159,28,.09)";
+      }
+
+      if (state === "danger") {
+        heroStatus.textContent = "ALARM";
+        heroStatus.style.color = "#ff6471";
+        heroStatus.style.background = "rgba(255,77,94,.09)";
+      }
+
+      if (showNotification && state === "normal") {
+        addEvent("İklim değerleri tekrar normal seviyeye döndü.");
+      }
+    }
+
+    /* ---------- TEMPERATURE CONTROLS ---------- */
+    document.getElementById("increaseTemp").addEventListener("click", () => {
+      temperature = Math.min(40, temperature + .5);
+      updateSimulation(true);
+    });
+
+    document.getElementById("decreaseTemp").addEventListener("click", () => {
+      temperature = Math.max(15, temperature - .5);
+      updateSimulation(true);
+    });
+
+    /* ---------- TARGET RANGE ---------- */
+    const targetRange = document.getElementById("targetRange");
+    const targetValue = document.getElementById("targetValue");
+
+    targetRange.addEventListener("input", () => {
+      targetTemperature = Number(targetRange.value);
+
+      targetValue.textContent =
+        targetTemperature.toFixed(1) + "°C";
+
+      updateSimulation(false);
+    });
+
+    /* ---------- NORMAL TEST ---------- */
+    document.getElementById("normalTest").addEventListener("click", () => {
+
+      temperature = targetTemperature;
+
+      updateSimulation(false);
+
+      addEvent(
+        "Normal çalışma senaryosu manuel olarak tetiklendi."
+      );
+
+      showToast(
+        "Normal Test",
+        "Sistem tüm değerleri nominal seviyede simüle ediyor."
+      );
+    });
+
+    /* ---------- ALARM TEST ---------- */
+    document.getElementById("alarmTest").addEventListener("click", () => {
+
+      temperature = 31;
+
+      updateSimulation(true);
+
+      showToast(
+        "Alarm Testi",
+        "Kritik sıcaklık alarm senaryosu çalıştırıldı.",
+        "danger"
+      );
+    });
+
+    /* ---------- RESET ---------- */
+    document.getElementById("resetTest").addEventListener("click", () => {
+
+      temperature = 22;
+      targetTemperature = 22;
+
+      targetRange.value = 22;
+      targetValue.textContent = "22.0°C";
+
+      updateSimulation(false);
+
+      addEvent("Sistem varsayılan değerlere sıfırlandı.");
+
+      showToast(
+        "Sistem Sıfırlandı",
+        "Simülasyon başlangıç değerlerine döndürüldü."
+      );
+    });
+
+    /* ---------- FAN TOGGLE ---------- */
+    document.getElementById("toggleFans").addEventListener("click", () => {
+
+      fansEnabled = !fansEnabled;
+
+      if (fansEnabled) {
+        addEvent("Fan grupları otomatik moda alındı.");
+        showToast(
+          "Fanlar Aktif",
+          "Havalandırma fanları otomatik kontrol altında."
+        );
+      } else {
+        addEvent(
+          "Fan grupları devre dışı bırakıldı.",
+          "warning"
+        );
+
+        showToast(
+          "Fanlar Kapalı",
+          "Havalandırma fanları manuel olarak kapatıldı.",
+          "warning"
+        );
+      }
+
+      updateSimulation(false);
+    });
+
+    /* ---------- ALARM TOGGLE ---------- */
+    document.getElementById("toggleAlarm").addEventListener("click", () => {
+
+      alarmEnabled = !alarmEnabled;
+
+      addEvent(
+        alarmEnabled
+          ? "Alarm sistemi aktif edildi."
+          : "Alarm sistemi devre dışı bırakıldı.",
+        alarmEnabled ? "normal" : "warning"
+      );
+
+      showToast(
+        alarmEnabled ? "Alarm Aktif" : "Alarm Kapalı",
+        alarmEnabled
+          ? "Alarm senaryoları etkin."
+          : "Alarm bildirimleri devre dışı.",
+        alarmEnabled ? "normal" : "warning"
+      );
+    });
+
+    /* ---------- HERO SWITCHES ---------- */
+    document.querySelectorAll("[data-switch]").forEach(sw => {
+
+      sw.addEventListener("click", event => {
+
+        event.stopPropagation();
+
+        sw.classList.toggle("active");
+
+        const active = sw.classList.contains("active");
+
+        addEvent(
+          active
+            ? "Kontrol çıkışı aktif edildi."
+            : "Kontrol çıkışı devre dışı bırakıldı.",
+          active ? "normal" : "warning"
+        );
+      });
+
+    });
+
+    /* ---------- CONTACT FORM ---------- */
+    document.getElementById("contactForm").addEventListener("submit", event => {
+
+      event.preventDefault();
+
+      const form = event.currentTarget;
+
+      const name = form.elements.name.value.trim();
+      const phone = form.elements.phone.value.trim();
+      const project = form.elements.project.value;
+      const message = form.elements.message.value.trim();
+
+      const text =
+        "Merhaba HİS Otomasyon,\\n\\n" +
+        "Ad Soyad: " + name + "\\n" +
+        "Telefon: " + phone + "\\n" +
+        "Proje: " + (project || "Belirtilmedi") + "\\n" +
+        "Mesaj: " + (message || "Bilgi almak istiyorum.") +
+        "\\n\\nWeb sitesi üzerinden iletişime geçiyorum.";
+
+      const url =
+        "https://wa.me/905337692278?text=" +
+        encodeURIComponent(text);
+
+      window.open(url, "_blank", "noopener");
+
+    });
+
+    /* ---------- AUTO SENSOR SIMULATION ---------- */
+    let autoSimulation = true;
+
+    setInterval(() => {
+
+      if (!autoSimulation) return;
+
+      /*
+       * Çok küçük doğal sensör dalgalanması.
+       * Kullanıcı manuel sıcaklık ayarı yaptığında
+       * sistemi bozmamak için ±0.08°C sınırında tutulur.
+       */
+      const drift = (Math.random() - .5) * .16;
+
+      temperature = Math.max(
+        15,
+        Math.min(40, temperature + drift)
+      );
+
+      updateSimulation(false);
+
+    }, 2600);
+
+    /* ---------- INITIAL STATE ---------- */
+    updateSimulation(false);
+
+    /* ---------- HERO DASHBOARD PARALLAX - DESKTOP ---------- */
+    if (window.matchMedia("(pointer:fine)").matches) {
+
+      const dashboard = document.querySelector(".dashboard");
+
+      document.addEventListener("mousemove", event => {
+
+        if (window.innerWidth < 901) return;
+
+        const rect = dashboard.getBoundingClientRect();
+
+        if (
+          event.clientX < rect.left - 100 ||
+          event.clientX > rect.right + 100 ||
+          event.clientY < rect.top - 100 ||
+          event.clientY > rect.bottom + 100
+        ) {
+          return;
+        }
+
+        const x =
+          (event.clientX - window.innerWidth / 2) /
+          window.innerWidth;
+
+        const y =
+          (event.clientY - window.innerHeight / 2) /
+          window.innerHeight;
+
+        dashboard.style.transform =
+          `rotateY(${x * 7}deg) rotateX(${y * -5}deg)`;
+      });
+
+    }
+
+    /* ---------- INTERSECTION REVEAL ---------- */
+    const revealElements = document.querySelectorAll(
+      ".solution-card, .why-item, .contact-card, .sim-panel"
+    );
+
+    revealElements.forEach(el => {
+      el.style.opacity = "0";
+      el.style.transform = "translateY(18px)";
+      el.style.transition =
+        "opacity .65s ease, transform .65s ease";
+    });
+
+    const revealObserver = new IntersectionObserver(entries => {
+
+      entries.forEach(entry => {
+
+        if (!entry.isIntersecting) return;
+
+        entry.target.style.opacity = "1";
+        entry.target.style.transform = "translateY(0)";
+
+        revealObserver.unobserve(entry.target);
+      });
+
+    }, {
+      threshold: .08
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    /* ---------- KEYBOARD TEMPERATURE CONTROL ---------- */
+    document.addEventListener("keydown", event => {
+
+      if (
+        event.target.tagName === "INPUT" ||
+        event.target.tagName === "TEXTAREA" ||
+        event.target.tagName === "SELECT"
+      ) return;
+
+      if (event.key === "ArrowUp") {
+        temperature = Math.min(40, temperature + .5);
+        updateSimulation(true);
+      }
+
+      if (event.key === "ArrowDown") {
+        temperature = Math.max(15, temperature - .5);
+        updateSimulation(true);
+      }
+
+    });
+
+    /* ---------- ONLINE STATUS ---------- */
+    window.addEventListener("online", () => {
+
+      showToast(
+        "Bağlantı Aktif",
+        "Uzaktan izleme bağlantısı yeniden kuruldu."
+      );
+
+      addEvent("İnternet bağlantısı yeniden aktif.");
+    });
+
+    window.addEventListener("offline", () => {
+
+      showToast(
+        "Bağlantı Kesildi",
+        "Simülasyon yerel olarak çalışmaya devam ediyor.",
+        "warning"
+      );
+
+      addEvent(
+        "İnternet bağlantısı kesildi. Yerel kontrol devam ediyor.",
+        "warning"
+      );
+    });
+
+    /* ---------- SERVICE-LIKE FEEDBACK ---------- */
+    window.addEventListener("load", () => {
+
+      setTimeout(() => {
+
+        showToast(
+          "HİS Kontrol Merkezi",
+          "Sistem simülasyonu hazır. Sıcaklığı değiştirmeyi deneyin."
+        );
+
+      }, 900);
+
+    });
+
+  </script>
+
+</body>
+</html>
